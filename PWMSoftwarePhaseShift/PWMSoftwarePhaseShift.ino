@@ -10,7 +10,7 @@ bool PWM_ON_PIN_value=false;
 uint8_t PWM1_time=2;
 uint8_t PWM2_time=2;
 uint8_t PWM_period=4;
-uint8_t PWM_offset=2;
+uint8_t PWM2_offset=2;
 
 uint8_t PWMArray1[PWM_ARRAY_LEN];
 uint8_t PWMArray2[PWM_ARRAY_LEN];
@@ -20,7 +20,7 @@ int i;
 void setup() {
   Serial.begin(9600);
   Serial.setTimeout(100);
-  Serial.print("Control command: PWM1_time, PWM2_time, PWM_period, PWM_offset\n");
+  Serial.print("Control command: PWM1_time, PWM2_time, PWM_period, PWM2_offset\n");
   Serial.print("Time resolution: approx. 3.3us \n");
   Serial.print("Use pin 8 for turning ON/OFF the modulation\n");
   
@@ -38,7 +38,7 @@ void setup() {
       PWMArray1[i]=0;  
       }
     
-      if((i>=PWM_offset)&&(i<(PWM2_time+PWM_offset))){
+      if((i>=PWM2_offset)&&(i<(PWM2_time+PWM2_offset))){
       PWMArray2[i]=1;
       }
       else{
@@ -69,7 +69,7 @@ void loop() {
     PWM1_time=parametersArray[0];
     PWM2_time=parametersArray[1];
     PWM_period=parametersArray[2];
-    PWM_offset=parametersArray[3];
+    PWM2_offset=parametersArray[3];
     
     for (i=0;i<PWM_period;i++){ 
       if(i<PWM1_time){
@@ -79,7 +79,7 @@ void loop() {
       PWMArray1[i]=0;  
       }
     
-      if((i>=PWM_offset)&&(i<(PWM2_time+PWM_offset))){
+      if((i>=PWM2_offset)&&(i<(PWM2_time+PWM2_offset))){
       PWMArray2[i]=1;
       }
       else{
